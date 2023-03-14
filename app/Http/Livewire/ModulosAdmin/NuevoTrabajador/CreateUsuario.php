@@ -49,7 +49,7 @@ class CreateUsuario extends Component
     }
 
     public function submit(){
-        $dataReceibe = $this->validate();
+        $this->validate();
         
         $confirmData = User::create([
             'nombre' => $this->nombre,

@@ -26,37 +26,41 @@ class IndexLogin extends Component
             'password' => 'required',
         ]);
     }
-    
-    public function submitAccess(){
+
+    public function submitAccess()
+    {
         $informacion = $this->validate([
-            'nombre'=> 'required',
+            'nombre' => 'required',
             'password' => 'required',
         ]);
-        
-        
+
+
         // User::create([
         //     'nombre' => $this->nombre,
-        //     'apellidos' => 'jurado hernadez',
-        //     'area' => '4',
-        //     'cargo' => 'encargado',
+        //     'apellidos' => 'ayala otero',
+        //     'area' => 'administracion',
+        //     'cargo' => 'administrador',
         //     'password' => Hash::make($this->password),
         // ]);
-            
-        if(Auth::attempt(['nombre' => $this->nombre, 'password'=> $this->password ] ) ){
-                
+
+        if (Auth::attempt(['nombre' => $this->nombre, 'password' => $this->password])) {
+
             $this->password = Hash::make($this->password);
-            $this->info = User::where('nombre' , $this->nombre)->first();
+            $this->info = User::where('nombre', $this->nombre)->first();
             //dd($this->info);
-            if($this->info['area'] == 1){
-                return redirect()->route('recepcion', ['nombre' => $this->nombre]);
-            }else if($this->info['area'] == 2){ 
-                return redirect()->route('pelado', ['nombre' => $this->nombre]);
-            }else if($this->info['area'] == 3){
-                return redirect()->route('coccion', ['nombre' => $this->nombre]);
-            }else if($this->info['area'] == 4){
-                return redirect()->route('almacen', ['nombre' => $this->nombre]);
-            }else{
-                return redirect(route('admin', ['nombre' => $this->nombre]));
+            session(['usuario' => $this->info['nombre'], 'area' => $this->info['area']]);
+            if ($this->info['area'] == 'campo') {
+                return redirect()->intended('campo');
+            } else if ($this->info['area'] == 'desespinado') {
+                return redirect()->intended('desespinado');
+            } else if ($this->info['area'] == 'produccion') {
+                return redirect()->intended('produccion');
+            } else if ($this->info['area'] == 'almacen') {
+                return redirect()->intended('almacen');
+            } else if ($this->info['area'] == 'recepcion') {
+                return redirect()->intended('recepcion');
+            } else if ($this->info['area'] == 'administracion') {
+                return redirect()->intended('home');
             }
         }
     }

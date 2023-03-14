@@ -8,12 +8,10 @@
                 <a class="nav-link" href="{{ route('nuevo-usuario') }}">Nuevo trabajador</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">close</a>
               </li>
+              <a class="nav-link" wire:click='cerrar_sesion'>cerrar sesion</a>
             </ul>
-            {{-- <span class="navbar-text">
-                <h4>{{$nombre = $_GET['nombre'] }}</h4>
-            </span> --}}
           </div>
         </div>
       </nav>

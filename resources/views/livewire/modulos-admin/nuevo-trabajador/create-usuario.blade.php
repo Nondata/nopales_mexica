@@ -2,9 +2,14 @@
     <div class="container">
 		<div class="row">
 			<div class="col">
-				@if (session() ->has('message'))
+				@if (session()->has('message'))
 					<div class="alert alert-success text-center">
 						{{ session('message') }}
+					</div>
+				@endif
+				@if (session()->has('error'))
+					<div class="alert alert-danger">
+						{{session('error')}}
 					</div>
 				@endif	
 			</div>
@@ -29,11 +34,12 @@
                                     <label for="area">Area</label>
                                     <select wire:model="area" class="form-select @error('area') is-invalid @enderror">
                                         <option value="" selected>Seleccione un area</option>
+                                        <option value="campo">Campo</option>
+                                        <option value="desespinado">Desespinado</option>
                                         <option value="recepcion">Recepci&oacute;n</option>
-                                        <option value="pelado">Pelado</option>
-                                        <option value="coccion">Cocci&oacute;n</option>
-                                        <option value="empacado">Empacado</option>
-                                        <option value="administracion">Administracion</option>
+                                        <option value="produccion">Producci&oacute;n</option>
+                                        <option value="almacen">Almacen</option>
+                                        <option value="administracion">Administraci&oacute;n</option>
                                     </select>
 									@error('area') <span class="error text-danger"> {{$message}} </span> @enderror
                                 </div>
