@@ -10,7 +10,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">close</a>
               </li>
-              <a class="nav-link" wire:click='cerrar_sesion'>cerrar sesion</a>
+              <a class="nav-link" wire:click='cerrar_sesion' href="#">cerrar sesion</a>
             </ul>
           </div>
         </div>
