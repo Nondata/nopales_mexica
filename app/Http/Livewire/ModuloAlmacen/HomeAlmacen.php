@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ModuloAlmacen;
 
+use App\Models\Empaque;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -84,7 +85,7 @@ class HomeAlmacen extends Component
         'sello' => 'required|integer',
         'rechazo' => 'required|integer',
         'lote' => 'required|integer',
-        'caducidad' => 'required|integer',
+        'caducidad' => 'required',
         'observaciones' => ''
     ];
 
@@ -106,8 +107,7 @@ class HomeAlmacen extends Component
         'rechazo.integer' => 'Solo numeros',
         'lote.required' => 'Campo obligatorio',
         'lote.integer' => 'Solo numeros',
-        'caducidad.required' => 'Campo obligatorio',
-        'caducidad.integer' => 'Solo numeros' //Esto ultimo se debe de aclarar 
+        'caducidad.required' => 'Campo obligatorio' //Esto ultimo se debe de aclarar 
     ];
     public function cerrar_sesion()
     {
@@ -122,10 +122,47 @@ class HomeAlmacen extends Component
         $this->validateOnly($propertyName);
     }
     public function save(){
-        $data = $this->validate();
-        //$encargado = session('usuario');
-        //dd($encargado);
-        dd($data);
+        $this->validate();
+        
+        $data = Empaque::create([
+            'encargado' => session('usuario'),
+            'fecha' => $this->fecha,
+            'nombre_empaco' => $this->nombre_empaco,
+            'tipo_producto' => $this->producto,
+            'color' => $this->color_sello,
+            'cajas' => $this->cajas,
+            'piezas' => $this->piezas,
+            'fugas' => $this->fugas,
+            'burbuja' => $this->burbuja,
+            'sello' => $this->sello,
+            'rechazo' => $this->rechazo,
+            'lote' => $this->lote,
+            'caducidad' => $this->caducidad,
+            'observaciones' => $this->observaciones
+        ]);
+
+        if($data){
+            session()->flash('message', 'Registro ingresado correctamente, 
+            siga ingresando otro registro, de lo contrario, cierre sesión');
+        }else {
+            session()->flash('error', 'Error al ingresar la informacion, 
+            comuniquese con el administrador');
+        }
+        $this->clean();
+    }
+    public function clean(){
+        $this->nombre_empaco = null;
+        $this->producto = null;
+        $this->color_sello = null;
+        $this->cajas = null;
+        $this->piezas = null;
+        $this->fugas = null;
+        $this->burbuja = null;
+        $this->sello = null;
+        $this->rechazo = null;
+        $this->lote = null;
+        $this->caducidad = null;
+        $this->observaciones = null;
     }
     public function mount(){
         $this->fecha = Carbon::now()->format('d/m/Y');

@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group( function(){
     Route::prefix('home')->group(function(){
         Route::get('/new_usuario', [Admin::class, 'nuevo_trabajador'])->name('nuevo-usuario');
         Route::get('/edit/{user}', [Admin::class, 'edit'])->name('edit');
+        Route::get("/data", [Admin::class, 'exportarDatos'])->name('exportar');
     });
     Route::get('/campo', [Admin::class, 'campo'])->name('campo');
     Route::get('/desespinado', [Admin::class, 'desespinado'])->name('desespinado');
@@ -33,6 +34,7 @@ Route::middleware(['auth'])->group( function(){
     Route::get('/almacen', [Admin::class, 'almacen'])->name('almacen');
     Route::get('/recepcion', [Admin::class, 'recepcion'])->name('recepcion');
 });
+
 
 
 

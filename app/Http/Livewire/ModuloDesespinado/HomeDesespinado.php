@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\ModuloDesespinado;
 
+use App\Models\Desespinado;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class HomeDesespinado extends Component
@@ -35,9 +37,35 @@ class HomeDesespinado extends Component
     }
 
     public function save(){
-        $data = $this->validate();
+        $this->validate();
 
-        dd($data);
+        $data = Desespinado::Create([
+            'encargado' => session('usuario'),
+            'fecha' => $this->fecha,
+            'nombre' => $this->nombre,
+            'kg_pelados' => $this->kg_pelado,
+            'piezas' => $this->piezas_peladas,
+            'observaciones' => $this->observaciones
+        ]);
+        if($data){
+            session()->flash('message', 'Ingresado correctamente, 
+            siga ingresando otro registro, de lo contrario, cierre sesión');
+        }else{
+            session()->flash('error', 'Error al ingresar la información
+            por favor comuniquese con el administrador');
+        }
+        $this->clear();
+    }
+
+    public function cerrar_sesion(){
+        Auth::logout();
+        return redirect()->to('/');
+    }
+    public function clear(){
+        $this->nombre = null;
+        $this->kg_pelado = null;
+        $this->piezas_peladas = null;
+        $this->observaciones = null;
     }
 
     public function mount(){

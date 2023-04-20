@@ -4,12 +4,12 @@ namespace App\Http\Livewire\ModuloCampo;
 
 use App\Models\Campo;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class HomeCampo extends Component
 {
     public $fecha;
-    public $encargado = 'juan carlos';
     public $actividad_a_realizar = '';
     public $zona_de_corte;
     public $cantidad;
@@ -34,6 +34,19 @@ class HomeCampo extends Component
         'zona_de_corte.required' => 'Seleccione corte',
         'realizo.required' => 'Seleccione personal',
     ];
+
+    public function cerrar_sesion(){
+        Auth::logout();
+        return redirect()->to('/');
+    }
+    public function clear(){
+        $this->actividad_a_realizar = null;
+        $this->cantidad = null;
+        $this->presentacion = null;
+        $this->zona_de_corte= null;
+        $this->codigo_trazabilidad = null;
+        $this->realizo = null;
+    }
     public function zona(){
         if($this->actividad_a_realizar == 'cosecha'){
             $this->codigo_trazabilidad .= $this->zona_de_corte;
@@ -53,11 +66,11 @@ class HomeCampo extends Component
 
     public function save()
     {
-        $data = $this->validate();
+        $this->validate();
 
-        Campo::create(
+        $data =Campo::create(
             [
-                'encargado' => $this->encargado,
+                'encargado' => session('usuario'),
                 'fecha' => $this->fecha,
                 'actividad_a_realizar' => $this->actividad_a_realizar,
                 'cantidad_cajas' => $this->cantidad,
@@ -67,17 +80,21 @@ class HomeCampo extends Component
                 'realizo' => $this->realizo
             ]
         );
-        session()->flash('message', 'Actividad registrada correctamente');
         //dd($data);
+
+        if($data){
+            session()->flash('message', 'Actividad registrada correctamente, si va a registrar nueva informacion, continue, de lo contrario cierre sesion');
+        }else {
+            session()->flash('error', 'Error al ingresar la informacion, comuniquese con el administrador');
+        }
+        $this->clear();
     }
     public function mount()
     {
         $this->fecha = Carbon::now()->format('d/m/Y');
-        //$this->codigo_trazabilidad .= $this->fecha . '  /';
     }
     public function render()
     {
-        //$this->codigo_trazabilidad .= $this->zona_de_corte;
         return view('livewire.modulo-campo.home-campo');
     }
 }

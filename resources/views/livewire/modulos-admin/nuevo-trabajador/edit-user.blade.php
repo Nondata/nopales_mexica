@@ -34,10 +34,11 @@
                                     <label for="area">Area</label>
                                     <select wire:model="user.area" class="form-select @error('area') is-invalid @enderror">
                                         <option value="">Seleccione un area</option>
+                                        <option value="campo" @if ('user.area' == 'campo') selected @endif>Campo</option>
+                                        <option value="desespinado" @if ('user.area' == 'desespinado') selected @endif>Desespinado</option>
                                         <option value="recepcion" @if ('user.area' == 'recepcion') selected @endif>Recepci&oacute;n</option>
-                                        <option value="pelado" @if ('user.area' == 'pelado') selected @endif>Pelado</option>
-                                        <option value="coccion" @if ('user.area' == 'coccion') selected @endif>Cocci&oacute;n</option>
-                                        <option value="empacado" @if ('user.area' == 'empacado') selected @endif>Empacado</option>
+                                        <option value="produccion" @if ('user.area' == 'produccion') selected @endif>Producci&oacute;n</option>
+                                        <option value="almacen" @if('user.area' == 'almacen') selected @endif>Almacen</option>
                                         <option value="administracion" @if ('user.area' == 'administracion') selected @endif>Administracion</option>
                                     </select>
 									@error('user.area') <span class="error text-danger"> {{$message}} </span> @enderror
@@ -47,7 +48,6 @@
                                     <select wire:model="user.cargo" class="form-select @error('cargo') is-invalid @enderror">
                                         <option value="">Seleccione cargo</option>
                                         <option value="encargado" @if ('user.cargo' == 'encargado') selected @endif>Encargado</option>
-                                        <option value="trabajador" @if ('user.cargo' == 'trabajador') selected @endif>Trabajador</option>
                                         <option value="administrador" @if ('user.cargo' == 'administrador') selected @endif>Administrador</option>
                                     </select>
 									@error('user.cargo') <span class="error text-danger"> {{$message}} </span> @enderror

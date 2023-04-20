@@ -18,6 +18,9 @@ class HomeAdmin extends Component
     public function updatingSearch(){
         $this->resetPage();
     }
+    public function delete($id){
+        User::destroy($id);
+    }
     public function render()
     {   
         if(strlen($this->query)> 0){

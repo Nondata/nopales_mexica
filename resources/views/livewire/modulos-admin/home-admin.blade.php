@@ -21,7 +21,7 @@
                                 <td>{{ $item->area }}</td>
                                 <td>{{ $item->cargo }}</td>
                                 <td><a href="{{ route('edit', ['user'=>$item->id]) }}" class="btn btn-warning">Editar</a></td>
-                                <td><a wire:click="delete" class="btn btn-danger">Eliminar</a></td>
+                                <td><a wire:click="delete({{$item->id}})" class="btn btn-danger">Eliminar</a></td>
                             </tr>
                         @endforeach
                     </tbody>

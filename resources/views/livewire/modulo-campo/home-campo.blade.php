@@ -1,16 +1,28 @@
 <div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
+    <nav class="navbar navbar-light bg-primary">
+        <div class="container-fluid">
+            <label for="">Bienvenido: </label>
+            <a class="navbar-brand" wire:click='cerrar_sesion' href="#">Cerrar Sesi&oacute;n</a>
+        </div>
+    </nav>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col">
                 @if (session()->has('message'))
-					<div class="alert alert-success text-center">
-						{{ session('message') }}
-					</div>
-				@endif
+                    <div class="alert alert-success text-center">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger text-center">
+                        {{session('message')}}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col">

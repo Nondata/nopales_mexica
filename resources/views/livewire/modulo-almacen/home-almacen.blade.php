@@ -4,10 +4,27 @@
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <nav class="navbar navbar-light bg-primary">
         <div class="container-fluid">
-            <label for="">Bienvenido:  </label>
+            <label for="">Bienvenido: </label>
             <a class="navbar-brand" wire:click='cerrar_sesion' href="#">Cerrar Sesi&oacute;n</a>
         </div>
     </nav>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{session('message')}}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
     <br>
     <form wire:submit.prevent="save">
         <div class="container">

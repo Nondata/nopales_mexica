@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ReporteGeneral;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class Admin extends Controller 
 {
@@ -37,5 +37,9 @@ class Admin extends Controller
     }
     public function recepcion(){
         return view('livewire.modulo-recepcion.home');
+    }
+
+    public function exportarDatos(){
+        return Excel::download(new ReporteGeneral, 'datos.xlsx');
     }
 }

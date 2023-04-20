@@ -34,20 +34,8 @@ class IndexLogin extends Component
             'password' => 'required',
         ]);
 
-
-        // User::create([
-        //     'nombre' => $this->nombre,
-        //     'apellidos' => 'ayala otero',
-        //     'area' => 'administracion',
-        //     'cargo' => 'administrador',
-        //     'password' => Hash::make($this->password),
-        // ]);
-
         if (Auth::attempt(['nombre' => $this->nombre, 'password' => $this->password])) {
-
-            $this->password = Hash::make($this->password);
             $this->info = User::where('nombre', $this->nombre)->first();
-            //dd($this->info);
             session(['usuario' => $this->info['nombre'], 'area' => $this->info['area']]);
             if ($this->info['area'] == 'campo') {
                 return redirect()->intended('campo');
@@ -60,7 +48,7 @@ class IndexLogin extends Component
             } else if ($this->info['area'] == 'recepcion') {
                 return redirect()->intended('recepcion');
             } else if ($this->info['area'] == 'administracion') {
-                return redirect()->intended('home');
+                return redirect()->intended('/home');
             }
         }
     }

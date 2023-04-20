@@ -48,7 +48,6 @@
                                     <select wire:model="cargo" class="form-select @error('cargo') is-invalid @enderror">
                                         <option value="" selected>Seleccione cargo</option>
                                         <option value="encargado">Encargado</option>
-                                        <option value="trabajador">Trabajador</option>
                                         <option value="administrador">Administrador</option>
                                     </select>
 									@error('cargo') <span class="error text-danger"> {{$message}} </span> @enderror

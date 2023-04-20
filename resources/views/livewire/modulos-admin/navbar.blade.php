@@ -8,11 +8,11 @@
                 <a class="nav-link" href="{{ route('nuevo-usuario') }}">Nuevo trabajador</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">close</a>
+                <a class="nav-link" href="{{ route('exportar') }}">Descargar reporte</a>
               </li>
-              <a class="nav-link" wire:click='cerrar_sesion' href="#">cerrar sesion</a>
             </ul>
           </div>
+          <a class="nav-link" wire:click='cerrar_sesion' href="#">cerrar sesion</a>
         </div>
       </nav>
 </div>
