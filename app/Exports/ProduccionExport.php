@@ -20,7 +20,7 @@ class ProduccionExport implements FromView, WithTitle
 
     public function title(): string
     {
-        return 'reporte-produccion';
+        return 'Produccion';
     }
     /**
     * @return \Illuminate\Support\Collection

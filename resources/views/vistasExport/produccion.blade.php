@@ -16,6 +16,7 @@
             <th>Personal Sellado</th>
             <th>Choque Termico</th>
             <th>Producto</th>
+            <th>Piezas</th>
             <th>Merma</th>
             <th>Observaciones</th>
         </tr>
@@ -38,6 +39,7 @@
                 <td>{{ $item->realizaron_sellado}}</td>
                 <td>{{ $item->choque_termico}}</td>
                 <td>{{ $item->gramaje_producto}}</td>
+                <td>{{ $item->piezas}} </td>
                 <td>{{ $item->kg_merma}}</td>
                 <td>{{ $item->observaciones}}</td>
             </tr>

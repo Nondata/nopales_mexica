@@ -6,8 +6,9 @@ use App\Models\Empaque;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class EmpaqueExport implements FromView, WithTitle
+class EmpaqueExport implements FromView, WithTitle, WithColumnWidths
 {
     public function view(): View
     {
@@ -16,10 +17,21 @@ class EmpaqueExport implements FromView, WithTitle
         ]);
     }
 
-
+    public function columnWidths(): array
+    {
+        return [
+            'B' => 15,
+            'C' => 13,
+            'D' => 20,
+            'E' => 40,
+            'M' => 15,
+            'N' => 15,
+            'O' => 20,
+        ];
+    }
     public function title(): string
     {
-        return 'reporte-empaque';
+        return 'Empaque';
     }
     /**
     * @return \Illuminate\Support\Collection

@@ -29,10 +29,12 @@ return new class extends Migration
             $table->string('realizaron_sellado');
             $table->string('choque_termico');
             $table->string('gramaje_producto');
+            $table->string('piezas');
             $table->integer('kg_merma');
             $table->string('observaciones');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -42,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produccion');
+        Schema::dropIfExists('produccions');
     }
 };

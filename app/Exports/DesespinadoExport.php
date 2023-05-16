@@ -6,9 +6,10 @@ use App\Models\Desespinado;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
 
-class DesespinadoExport implements FromView, WithTitle
+class DesespinadoExport implements FromView, WithTitle, WithColumnWidths
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -18,8 +19,18 @@ class DesespinadoExport implements FromView, WithTitle
             'desespinados' => Desespinado::all()
         ]);
     }
+
+    public function columnWidths(): array
+    {
+        return [
+            'B' => 20,
+            'C' => 18,
+            'E' => 13,
+            'G' => 30,
+        ];
+    }
     public function title():string{
-        return 'lista-desespinado';
+        return 'Desespinado';
     }
     // public function collection()
     // {

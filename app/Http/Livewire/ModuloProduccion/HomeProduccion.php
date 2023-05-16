@@ -22,6 +22,7 @@ class HomeProduccion extends Component
     public $personal_sellado = '';
     public $validacion_choque;
     public $gramaje;
+    public $piezas;
     public $mermas;
     public $observaciones;
 
@@ -38,6 +39,7 @@ class HomeProduccion extends Component
         'personal_sellado' => 'required',
         'validacion_choque' => 'required',
         'gramaje' => 'required',
+        'piezas' => 'required|integer',
         'mermas' => 'required|integer',
         'observaciones' => '',
     ];
@@ -60,6 +62,8 @@ class HomeProduccion extends Component
         'personal_sellado.required' => 'Seleccione al personal que sello',
         'validacion_choque.required' => 'Campo obligatorio',
         'gramaje.required' => 'Campo obligatorio',
+        'piezas.required' => 'Campo obligatorio',
+        'piezas.integer' => 'Solo ingrese numeros',
         'mermas.required' => 'Campo obligatorio',
         'mermas.integer' => 'Solo numeros enteros',
     ];
@@ -68,10 +72,7 @@ class HomeProduccion extends Component
         $this->validateOnly($propertyName);
     }
     public function save(){
-        $data = $this->validate();
-
-        //dd(session('usuario'));
-        //zdd($data);
+        $this->validate();
 
         $data = Produccion::Create([
             'encargado' => session('usuario'),
@@ -88,6 +89,7 @@ class HomeProduccion extends Component
             'realizaron_sellado' => $this->personal_sellado,
             'choque_termico' => $this->validacion_choque,
             'gramaje_producto' => $this->gramaje,
+            'piezas' => $this->piezas,
             'kg_merma' => $this->mermas,
             'observaciones' => $this->observaciones
         ]);

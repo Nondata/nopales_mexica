@@ -26,7 +26,7 @@ class HomeAdmin extends Component
         if(strlen($this->query)> 0){
             $items = User::search($this->query)->get();
         }else{
-            $items = User::paginate(10);
+            $items = User::paginate(7);
         }
 
         if(Auth::check()){

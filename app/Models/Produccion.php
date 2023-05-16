@@ -24,6 +24,7 @@ class Produccion extends Model
         'realizaron_sellado',
         'choque_termico',
         'gramaje_producto',
+        'piezas',
         'kg_merma',
         'observaciones'
     ];

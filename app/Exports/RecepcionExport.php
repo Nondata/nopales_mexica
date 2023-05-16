@@ -6,8 +6,9 @@ use App\Models\Recepcion;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class RecepcionExport implements FromView, WIthTitle
+class RecepcionExport implements FromView, WIthTitle, WithColumnWidths
 {
     public function view(): View
     {
@@ -16,16 +17,22 @@ class RecepcionExport implements FromView, WIthTitle
         ]);
     }
 
-
     public function title(): string
     {
-        return 'reporte-recepcion';
+        return 'Recepcion';
     }
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    // public function collection()
-    // {
-    //     return Recepcion::all();
-    // }
+    public function columnWidths(): array
+    {
+        return [
+            'B' => 20,
+            'C' => 13,
+            'D' => 18,
+            'J' => 11,
+            'K' => 10,
+            'N' => 14,
+            'O' => 11,
+            'P' => 14,
+            'Q' => 20
+        ];
+    }
 }

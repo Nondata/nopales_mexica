@@ -61,6 +61,7 @@ class HomeDesespinado extends Component
         Auth::logout();
         return redirect()->to('/');
     }
+    
     public function clear(){
         $this->nombre = null;
         $this->kg_pelado = null;

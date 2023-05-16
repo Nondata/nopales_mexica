@@ -21,8 +21,11 @@ class ReporteGeneral implements WithMultipleSheets
         array_push($sheets, new CampoExport());
         array_push($sheets, new DesespinadoExport());
         array_push($sheets, new EmpaqueExport());
+        array_push($sheets, new ProductoExport);
         array_push($sheets, new ProduccionExport());
         array_push($sheets, new RecepcionExport());
+        array_push($sheets, new SalidasExport());
+        array_push($sheets, new TablaGeneral());
         return $sheets;
     }
     /**
