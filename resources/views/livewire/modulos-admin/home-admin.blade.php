@@ -1,8 +1,8 @@
 <div>
-    <div class="container mt-3">
+    <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card w-80">
                     <div class="card-header">
                         <h4 style="text-align: center">Lista de trabajadores</h4>
                     </div>
